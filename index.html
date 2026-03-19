@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>УЗ | Квитки на Дитячу Залізницю</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="top-nav blue-header" id="main-nav">
+    <div class="nav-left">
+        <img src="images/Лого РДЗ.png" alt="УЗ Лого" class="nav-logo" id="logo-home">
+        <div class="nav-links">
+            <a href="#" class="nav-link" id="nav-search">Пошук квитків</a>
+            <a href="#" class="nav-link" id="nav-table">Табло</a>
+            <a href="#" class="nav-link" id="nav-help">Допомога</a>
+        </div>
+    </div>
+    <div class="nav-right" id="auth-status">
+        <button id="my-account-btn" class="uz-outline-white-btn">Увійти</button>
+    </div>
+</nav>
+
+<div id="view-search" class="view active view-blue-bg">
+    <div class="hero-content">
+        <h1>Квитки на Дитячу Залізницю</h1>
+        <div class="search-box">
+            <div class="input-field disabled">
+                <span class="icon">📍</span>
+                <input type="text" value="ст. Центральна" readonly>
+            </div>
+            <div class="input-field">
+                <span class="icon">📅</span>
+                <input type="date" id="search-date">
+            </div>
+            <button id="btn-search" class="uz-dark-btn">Знайти</button>
+        </div>
+        
+        <div class="promo-block">
+            <div class="promo-text">
+                <h2>Рушайте в подорож<br>Дитячою Залізницею</h2>
+                <p>Пригода містом, де про комфорт у дорозі дбають вихованці Дитячої залізниці під керівництвом професійних залізничників.</p>
+                <button id="dummy-btn" class="outline-white-btn">Дізнатися більше</button>
+            </div>
+            <div class="promo-image">🚂</div>
+        </div>
+    </div>
+</div>
+
+<div id="view-results" class="view">
+    <div class="results-container">
+        <div class="results-header">
+            <h2>ст. Центральна</h2>
+            <div class="breadcrumbs">
+                <span class="active">Потяг</span> > <span>Місця</span> > <span>Оплата</span>
+            </div>
+        </div>
+        <div class="date-carousel" id="date-carousel"></div>
+        <div id="state-trains" class="trains-list"></div>
+    </div>
+</div>
+
+<div id="view-table" class="view">
+    <div class="results-container">
+        <div class="dark-board">
+            <div class="dark-board-header">
+                <div>
+                    <h2>Розклад руху поїздів<br>Рівненської дитячої залізниці</h2>
+                    <div class="board-filters">
+                        <span>Тривалість <span class="accent-green">25хв</span></span>
+                        <span>Сезон <span class="accent-green">Весна — осінь ⌄</span></span>
+                        <span>Станція <span class="accent-green">Центральна ⌄</span></span>
+                    </div>
+                </div>
+                <button class="white-btn" id="btn-buy-from-board">Купити квиток</button>
+            </div>
+            <div class="board-tabs">
+                <div class="board-tab active">→ Центральна — Гідропарк — Озерна</div>
+                <div class="board-tab inactive">→ Озерна — Гідропарк — Центральна</div>
+            </div>
+            <table class="dark-table" id="trains-board">
+                <thead>
+                    <tr>
+                        <th>Потяг</th>
+                        <th>Дні курсування</th>
+                        <th style="text-align: right;">Час відправлення</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="view-seats" class="view">
+    <div class="results-container">
+        <div class="results-header">
+            <a href="#" id="back-to-trains" class="edit-link">← Назад до потягів</a>
+            <h2 id="selected-train-info" style="margin-top: 10px;">Рейс о 10:00</h2>
+        </div>
+        <div class="seat-container">
+            <div class="wagon-tabs">
+                <button class="tab-btn active" data-wagon="1">Вагон №1</button>
+                <button class="tab-btn" data-wagon="2">Вагон №2</button>
+            </div>
+            <div class="wagon-container">
+                <div id="seat-map" class="seat-grid"></div>
+            </div>
+            <div class="legend">
+                <div class="legend-item"><span class="seat available"></span> Вільне</div>
+                <div class="legend-item"><span class="seat selected"></span> Обране</div>
+                <div class="legend-item"><span class="seat occupied"></span> Зайняте</div>
+            </div>
+            <footer class="order-panel">
+                <div class="order-info">
+                    <p>Вагон <span id="current-wagon-display">1</span> | Місця: <span id="selected-seats-list">—</span></p>
+                    <p class="price-wrap">До сплати: <span id="total-price">0</span> ₴</p>
+                </div>
+                <button id="book-btn" class="uz-dark-btn">Оформити квиток</button>
+            </footer>
+        </div>
+    </div>
+</div>
+
+<div id="view-help" class="view">
+    <div class="results-container">
+        <h2 class="text-center" style="color: #233e8b;">Часті запитання (FAQ)</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-trigger">Який графік роботи залізниці? <span class="faq-icon">+</span></div>
+                <div class="faq-content"><p>Дитяча залізниця працює у четвер, п'ятницю, суботу та неділю з травня по жовтень.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-trigger">Звідки відправляються потяги? <span class="faq-icon">+</span></div>
+                <div class="faq-content"><p>Всі рейси відправляються зі станції "Центральна" (біля гідропарку).</p></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="login-modal" class="modal">
+    <div class="modal-content auth-modal">
+        <span class="close-btn" id="close-login">&times;</span>
+        <div class="auth-header"><h3>Увійти з акаунтом</h3></div>
+        <div class="auth-body">
+            <div class="form-group">
+                <label>Ім'я</label>
+                <input type="text" id="auth-name" placeholder="Введіть ваше ім'я">
+            </div>
+            <div class="form-group">
+                <label>Номер телефону</label>
+                <div class="phone-input">
+                    <span class="flag">🇺🇦</span><span class="prefix">+38</span>
+                    <input type="tel" id="auth-phone" placeholder="(___) ___-__-__">
+                </div>
+            </div>
+            <button id="btn-perform-login" class="uz-dark-btn full-width">Увійти</button>
+        </div>
+    </div>
+</div>
+
+<div id="account-modal" class="modal">
+    <div class="modal-content" style="max-width: 500px;">
+        <span class="close-btn" id="close-account">&times;</span>
+        <h2 style="color: #233e8b;">Мої квитки</h2>
+        <div id="tickets-list"></div>
+    </div>
+</div>
+
+<div id="refund-modal" class="modal">
+    <div class="modal-content" style="max-width: 400px; text-align: center;">
+        <h3 style="color: #e74c3c;">Повернення квитків</h3>
+        <p id="refund-question">Ви дійсно хочете повернути квиток?</p>
+        <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: left;">
+            <p style="margin: 5px 0;"><strong>Рейс:</strong> <span id="refund-date"></span></p>
+            <p style="margin: 5px 0;"><strong>До повернення:</strong> <span id="refund-amount" style="color: #e74c3c; font-weight: bold; font-size: 18px;"></span> ₴</p>
+            <p style="margin: 5px 0; font-size: 12px; color: #777;">*Сума повернення розрахована з урахуванням комісії системи.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <button id="cancel-refund-btn" class="uz-outline-btn full-width">Скасувати</button>
+            <button id="confirm-refund-btn" class="danger-btn full-width">Повернути</button>
+        </div>
+    </div>
+</div>
+
+<div id="loading-modal" class="modal">
+    <div class="modal-content" style="max-width: 300px; text-align: center; background: transparent; box-shadow: none;">
+        <div class="spinner"></div>
+        <h3 style="color: white; margin-top: 20px;">Оформлення...</h3>
+    </div>
+</div>
+
+<div id="success-modal" class="modal">
+    <div class="modal-content" style="max-width: 350px; text-align: center;">
+        <div style="font-size: 50px; color: #2ecc71; margin-bottom: 10px;">✔</div>
+        <h3 style="color: #2ecc71; margin-top: 0;">Успішно!</h3>
+        <p style="margin-bottom: 25px;">Квиток успішно оформлено.<br>Приємної подорожі!</p>
+        <button class="uz-dark-btn full-width" id="close-success-btn">Чудово</button>
+    </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
